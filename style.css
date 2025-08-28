@@ -1,0 +1,25 @@
+/* Custom Styles for Stylencia */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar shadow */
+nav {
+  transition: all 0.3s ease;
+}
+
+/* Hover animation for cards */
+section div:hover {
+  transform: translateY(-3px);
+}
+
+/* Button animation */
+button {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}

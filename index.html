@@ -4,59 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stylencia - Your AI Fashion Stylist</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <h1 class="logo">Stylencia</h1>
-    <a href="#waitlist" class="btn-primary">Join Waitlist</a>
+  <nav class="p-5 flex justify-between items-center bg-white shadow-md fixed w-full top-0 z-50">
+    <h1 class="text-2xl font-bold text-indigo-600">Stylencia</h1>
+    <a href="#waitlist" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Join Waitlist</a>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <h2 class="hero-title">Your AI Fashion Stylist</h2>
-    <p class="hero-subtitle">
+  <section class="text-center py-32 px-5">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900">Your AI Fashion Stylist</h2>
+    <p class="mt-5 text-lg text-gray-600 max-w-2xl mx-auto">
       Get the perfect outfit suggestions for every occasion. Powered by AI, designed for you.
     </p>
-    <a href="#waitlist" class="btn-cta">Get Early Access</a>
+    <a href="#waitlist" class="mt-8 inline-block px-6 py-3 bg-indigo-600 text-white text-lg rounded-xl shadow-lg hover:bg-indigo-700 transition">
+      Get Early Access
+    </a>
   </section>
 
   <!-- Features -->
-  <section class="features">
-    <h3 class="section-title">Why Stylencia?</h3>
-    <div class="features-grid">
-      <div class="feature-card">
-        <h4>Smart Outfit Matching</h4>
-        <p>AI recommends upper, lower, and accessories tailored to your occasion.</p>
+  <section class="py-16 bg-white text-center">
+    <h3 class="text-3xl font-bold text-gray-900">Why Stylencia?</h3>
+    <div class="mt-10 grid md:grid-cols-3 gap-8 px-10">
+      <div class="p-6 bg-gray-100 rounded-2xl shadow hover:scale-105 transition">
+        <h4 class="text-xl font-semibold">Smart Outfit Matching</h4>
+        <p class="mt-3 text-gray-600">AI recommends upper, lower, and accessories tailored to your occasion.</p>
       </div>
-      <div class="feature-card">
-        <h4>Occasion-Based Styling</h4>
-        <p>Be it weddings, office, or casual outings — Stylencia has you covered.</p>
+      <div class="p-6 bg-gray-100 rounded-2xl shadow hover:scale-105 transition">
+        <h4 class="text-xl font-semibold">Occasion-Based Styling</h4>
+        <p class="mt-3 text-gray-600">Be it weddings, office, or casual outings — Stylencia has you covered.</p>
       </div>
-      <div class="feature-card">
-        <h4>Direct Purchase Links</h4>
-        <p>Buy recommended outfits instantly with trusted shopping partners.</p>
+      <div class="p-6 bg-gray-100 rounded-2xl shadow hover:scale-105 transition">
+        <h4 class="text-xl font-semibold">Direct Purchase Links</h4>
+        <p class="mt-3 text-gray-600">Buy recommended outfits instantly with trusted shopping partners.</p>
       </div>
     </div>
   </section>
 
   <!-- Waitlist Form -->
-  <section id="waitlist" class="waitlist">
-    <h3 class="section-title">Join the Waitlist</h3>
-    <p class="waitlist-subtitle">Be the first to experience AI-powered fashion styling.</p>
-    <form action="https://send.pageclip.co/YOUR-FORM-ENDPOINT" method="post" class="waitlist-form">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit" class="btn-primary">Notify Me</button>
+  <section id="waitlist" class="py-20 bg-indigo-50 text-center">
+    <h3 class="text-3xl font-bold text-gray-900">Join the Waitlist</h3>
+    <p class="mt-3 text-gray-600">Be the first to experience AI-powered fashion styling.</p>
+    <form id="waitlistForm" action="https://send.pageclip.co/YOUR-FORM-ENDPOINT" method="post" class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 px-5">
+      <input type="email" name="email" placeholder="Enter your email" required class="w-full md:w-80 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500" />
+      <button type="submit" class="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition">Notify Me</button>
     </form>
+    <p id="formMessage" class="mt-4 text-green-600 hidden">🎉 Thanks for joining the waitlist!</p>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="py-6 text-center text-gray-500 bg-white border-t">
     © 2025 Stylencia.me | Made with ❤️ by Anshu Kumar
   </footer>
 
+  <!-- Custom Script -->
   <script src="script.js"></script>
 </body>
 </html>
