@@ -1,25 +1,75 @@
-/* Custom Styles for Stylencia */
+/* Premium Gradient Theme for Stylencia */
+
+/* Background gradient */
+body {
+  background: linear-gradient(135deg, #6A0DAD, #3B0A45);
+  min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+  background: linear-gradient(135deg, #5F0A87, #2C0735);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #6A0DAD, #3B0A45);
+}
+
+/* Features Section */
+.features-section {
+  background: linear-gradient(135deg, #3B0A45, #6A0DAD);
+}
+
+/* Waitlist Section */
+.waitlist-section {
+  background: linear-gradient(135deg, #5F0A87, #A4508B);
+}
+
+/* Footer */
+.footer-section {
+  background: #2C0735;
+}
+
+/* Buttons */
+.btn {
+  background: linear-gradient(135deg, #A4508B, #5F0A87);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #B75EFF, #6A0DAD);
+}
+
+/* Feature Cards */
+.feature-card {
+  background: linear-gradient(135deg, #3B0A45, #6A0DAD);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px) scale(1.05);
+}
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Navbar shadow */
-nav {
-  transition: all 0.3s ease;
-}
-
-/* Hover animation for cards */
-section div:hover {
-  transform: translateY(-3px);
-}
-
-/* Button animation */
-button {
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
+/* Pattern Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/leaf.png');
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: -1;
 }

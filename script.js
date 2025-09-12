@@ -1,5 +1,3 @@
-// Smooth scroll is handled by CSS (scroll-behavior: smooth)
-
 // Form submission handler
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("waitlistForm");
