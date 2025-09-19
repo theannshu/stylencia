@@ -1,65 +1,60 @@
-/* Premium Professional Theme for Stylencia */
+/* Premium Gradient Theme for Stylencia */
 
-/* (Optional but Recommended) Import the new font */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
-
-/* Set body background color and the new pattern */
+/* Background gradient */
 body {
-  background-color: #4C3B4D; /* Dark background purple */
-  background-image: url('https://www.svgbackgrounds.com/api/pattern/liquid-cheese-leaves/'); /* New elegant pattern */
-  color: #F5F5F5; /* Set default text color to off-white */
-  font-family: sans-serif; /* Default font for body text */
+  background: linear-gradient(135deg, #6A0DAD, #3B0A45);
   min-height: 100vh;
 }
 
 /* Navbar */
 nav {
-  background-color: #6D5A72; /* Use the main card purple */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #5F0A87, #2C0735);
 }
 
-/* Sections - Remove gradients and use the main solid purple */
-.hero-section,
-.features-section,
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #6A0DAD, #3B0A45);
+}
+
+/* Features Section */
+.features-section {
+  background: linear-gradient(135deg, #3B0A45, #6A0DAD);
+}
+
+/* Waitlist Section */
 .waitlist-section {
-  background-color: transparent; /* Make sections transparent to show body background */
+  background: linear-gradient(135deg, #5F0A87, #A4508B);
 }
 
 /* Footer */
 .footer-section {
-  background-color: #4C3B4D; /* Match the dark background */
-  border-top: 1px solid #6D5A72; /* Add a subtle separator line */
+  background: #2C0735;
 }
 
-/* Buttons - Update to the new accent color */
+/* Buttons */
 .btn {
-  background-color: #8B728F;
+  background: linear-gradient(135deg, #A4508B, #5F0A87);
   color: white;
   font-weight: 600;
   transition: all 0.3s ease;
-  border: none;
 }
 
 .btn:hover {
-  transform: scale(1.05);
-  background-color: #A58DAA; /* A slightly lighter purple for hover */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #B75EFF, #6A0DAD);
 }
 
-/* Feature Cards - This is the key to the new look! */
+/* Feature Cards */
 .feature-card {
-  background-color: #6D5A72; /* Main card purple */
+  background: linear-gradient(135deg, #3B0A45, #6A0DAD);
   color: white;
   border-radius: 20px;
-  /* A softer, more professional shadow like in your image */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border for a premium feel */
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px) scale(1.05);
 }
 
 /* Smooth scrolling */
@@ -67,13 +62,14 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Remove the old pattern overlay to avoid conflicts */
+/* Pattern Overlay */
 body::before {
   content: "";
-  display: none;
-}
-
-/* (Optional but Recommended) Apply the new premium font to headings */
-h1, h2, h3, h4 {
-  font-family: 'Lora', serif;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/leaf.png');
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: -1;
 }
