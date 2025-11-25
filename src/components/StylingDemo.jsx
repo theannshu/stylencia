@@ -98,7 +98,7 @@ const StylingDemo = () => {
                     </div>
 
                     {/* Results Area */}
-                    <div className="min-h-[200px]">
+                    <div className="min-h-[300px]">
                         <AnimatePresence mode="wait">
                             {result ? (
                                 <motion.div
@@ -125,17 +125,26 @@ const StylingDemo = () => {
                                     </div>
                                 </motion.div>
                             ) : (
-                                !isGenerating && (
-                                    <motion.div
-                                        key="placeholder"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        className="flex flex-col items-center justify-center h-40 text-gray-500 italic"
-                                    >
-                                        <User className="w-12 h-12 mb-2 opacity-20" />
-                                        <p>Select gender & occasion to see Stylencia's recommendations.</p>
-                                    </motion.div>
-                                )
+                                <motion.div
+                                    key="placeholder"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="flex flex-col items-center justify-center h-60 text-gray-500"
+                                >
+                                    {isGenerating ? (
+                                        <div className="flex flex-col items-center gap-4">
+                                            <RefreshCw className="w-12 h-12 text-purple-500 animate-spin" />
+                                            <p className="text-xl font-medium text-purple-300 animate-pulse">Stylencia is curating your look...</p>
+                                            <p className="text-sm text-gray-400">Analyzing color theory & style trends</p>
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-center">
+                                            <User className="w-16 h-16 mb-4 opacity-20" />
+                                            <p className="text-lg">Select gender & occasion, then click <span className="text-purple-400 font-bold">Generate</span> to see Stylencia's recommendations.</p>
+                                        </div>
+                                    )}
+                                </motion.div>
                             )}
                         </AnimatePresence>
                     </div>
