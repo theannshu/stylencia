@@ -1,77 +1,103 @@
 import { products } from '../data/products';
 
-// Expert Rules for Outfit Generation
-const expertRules = {
+// Vibe Definitions (Style Archetypes)
+const vibes = {
     women: {
-        wedding: {
-            description: "For a wedding, Stylencia recommends embracing rich, regal colors. We've selected an elegant ethnic ensemble paired with statement jewelry. The gold accents add a festive touch, perfect for the celebration.",
-            requiredTags: ['upper', 'shoes', 'accessory']
-        },
-        office: {
-            description: "For the workplace, we suggest a clean, professional silhouette. This combination balances comfort with authority, featuring neutral tones and structured fabrics that command respect while keeping you at ease.",
-            requiredTags: ['upper', 'lower', 'accessory']
-        },
-        date: {
-            description: "For a date night, Stylencia curated a look that is chic and confident. The outfit highlights a sophisticated aesthetic with a touch of glamour, ensuring you make a memorable impression.",
-            requiredTags: ['upper', 'shoes', 'accessory']
-        },
-        casual: {
-            description: "For a casual day out, comfort is key without compromising style. We've picked a breezy, relaxed outfit paired with versatile footwear, perfect for brunch or a day of shopping.",
-            requiredTags: ['upper', 'shoes'] // Minimal requirement
-        }
+        wedding: [
+            { id: 'royal', label: 'Royal & Traditional', description: "A majestic look featuring deep colors and heavy embroidery, perfect for a grand celebration." },
+            { id: 'modern', label: 'Modern Chic', description: "A contemporary take on wedding wear, blending traditional silhouettes with modern cuts and pastel hues." },
+            { id: 'classic', label: 'Timeless Classic', description: "An elegant and evergreen ensemble that never goes out of style, focusing on grace and poise." }
+        ],
+        office: [
+            { id: 'power', label: 'Power Dressing', description: "Command the room with sharp tailoring and bold silhouettes. This look is all about confidence and authority." },
+            { id: 'chic', label: 'Effortlessly Chic', description: "A stylish yet professional look that balances comfort with high fashion. Perfect for a creative workspace." },
+            { id: 'classic', label: 'Corporate Classic', description: "The gold standard of office wear. Clean lines, neutral tones, and understated elegance." }
+        ],
+        date: [
+            { id: 'glam', label: 'Night Out Glam', description: "Turn heads with this high-impact look. Sparkles, bold cuts, and statement accessories for a memorable night." },
+            { id: 'romantic', label: 'Soft & Romantic', description: "A dreamy aesthetic featuring soft fabrics, lace, and gentle colors. Perfect for a candlelit dinner." },
+            { id: 'edgy', label: 'Edgy & Bold', description: "For the woman who loves to break rules. Leather accents and dark tones create a mysterious and alluring vibe." }
+        ],
+        casual: [
+            { id: 'boho', label: 'Bohemian Free Spirit', description: "Relaxed fits, floral prints, and artistic accessories. A comfortable look that expresses creativity." },
+            { id: 'streetwear', label: 'Urban Streetwear', description: "Cool, comfortable, and on-trend. Sneakers and oversized fits make this perfect for the city." },
+            { id: 'classic', label: 'Casual Classic', description: "Simple, effective, and always good looking. Basic staples paired perfectly for an effortless day out." }
+        ]
     },
     men: {
-        wedding: {
-            description: "For a wedding, tradition meets modern class. Stylencia recommends a Sherwani or Kurta set in deep, royal hues. Paired with classic Mojaris, this look is timeless and culturally rich.",
-            requiredTags: ['upper', 'shoes']
-        },
-        office: {
-            description: "For the office, sharp tailoring is essential. We've selected a crisp shirt and well-fitted trousers. This look conveys professionalism and attention to detail, ideal for meetings and daily work.",
-            requiredTags: ['upper', 'lower', 'accessory']
-        },
-        date: {
-            description: "For a date, we recommend a smart-casual approach. A well-fitted top with clean boots or shoes strikes the perfect balance between relaxed and refined. It shows effort without trying too hard.",
-            requiredTags: ['upper', 'shoes', 'accessory']
-        },
-        casual: {
-            description: "For the weekend, keep it cool and effortless. A graphic tee or casual shirt with denim is a staple combo. Paired with fresh sneakers, this look is ready for anything.",
-            requiredTags: ['upper', 'lower', 'shoes']
-        }
+        wedding: [
+            { id: 'royal', label: 'Royal Maharaja', description: "Embrace the grandeur of Indian weddings with a regal Sherwani and traditional accessories." },
+            { id: 'modern', label: 'Modern Groom', description: "A sleek and contemporary ethnic look. Minimalist cuts with premium fabrics for the modern man." },
+            { id: 'classic', label: 'Traditional Classic', description: "The quintessential wedding look. A timeless Kurta set that honors tradition with elegance." }
+        ],
+        office: [
+            { id: 'classic', label: 'Corporate Sharp', description: "The definitive business look. Crisp shirts and well-fitted trousers for the serious professional." },
+            { id: 'modern', label: 'Modern Business', description: "A fresh take on office wear. Mixing patterns and textures for a look that is professional yet interesting." },
+            { id: 'classic', label: 'Smart Casual', description: "Perfect for Fridays or creative offices. Polished but relaxed, bridging the gap between work and play." }
+        ],
+        date: [
+            { id: 'minimalist', label: 'Sleek Minimalist', description: "Less is more. Clean lines, solid colors, and a focus on fit. A sophisticated look that speaks volumes." },
+            { id: 'edgy', label: 'Rockstar Edge', description: "Leather jackets, boots, and attitude. A bold look for a confident date night." },
+            { id: 'casual-chic', label: 'Relaxed Charm', description: "Approachable and stylish. Linen shirts and smart trousers for a vibe that is effortless and charming." }
+        ],
+        casual: [
+            { id: 'streetwear', label: 'Hypebeast Streetwear', description: "Trendy, bold, and comfortable. Graphic tees and sneakers for a youthful and energetic vibe." },
+            { id: 'relaxed', label: 'Laid-back Weekend', description: "Maximum comfort without looking sloppy. Hoodies and cargos for a chilled out Sunday." },
+            { id: 'classic', label: 'Smart Casual', description: "A polo and jeans combo that works everywhere. The reliable choice for a casual day out." }
+        ]
     }
 };
 
 export const generateOutfit = (gender, occasion) => {
-    const rules = expertRules[gender][occasion];
+    // 1. Randomly select a "Vibe" for this generation
+    const possibleVibes = vibes[gender][occasion];
+    const selectedVibe = possibleVibes[Math.floor(Math.random() * possibleVibes.length)];
 
-    // 1. Filter products for this specific gender and occasion
-    const relevantProducts = products.filter(p =>
-        p.tags.includes(gender) && p.tags.includes(occasion)
+    // 2. Filter products for this specific gender, occasion AND vibe
+    let relevantProducts = products.filter(p =>
+        p.tags.includes(gender) &&
+        p.tags.includes(occasion) &&
+        p.tags.includes(selectedVibe.id)
     );
 
-    // 2. Select best items based on required tags (simulating "styling")
+    // Fallback: If not enough items for this specific vibe, mix in generic items for the occasion
+    if (relevantProducts.length < 3) {
+        const genericProducts = products.filter(p =>
+            p.tags.includes(gender) &&
+            p.tags.includes(occasion) &&
+            !p.tags.includes(selectedVibe.id)
+        );
+        relevantProducts = [...relevantProducts, ...genericProducts];
+    }
+
+    // 3. Select best items (Upper, Lower/Shoes, Accessory)
     const selectedItems = [];
     const usedTypes = new Set();
 
-    // Prioritize high-rated items first
-    const sortedProducts = [...relevantProducts].sort((a, b) => b.rating - a.rating);
-
-    // Try to fill the "required" slots first
-    rules.requiredTags.forEach(tag => {
-        const match = sortedProducts.find(p => p.tags.includes(tag) && !usedTypes.has(tag));
+    // Helper to find and add item
+    const addByType = (type) => {
+        // Shuffle relevant products to ensure variety even within the same vibe
+        const shuffled = [...relevantProducts].sort(() => 0.5 - Math.random());
+        const match = shuffled.find(p => p.tags.includes(type) && !usedTypes.has(type));
         if (match) {
             selectedItems.push(match);
-            usedTypes.add(tag);
+            usedTypes.add(type);
         }
-    });
+    };
 
-    // If we still have very few items, fill with *any* other valid item for this category
-    if (selectedItems.length < 2) {
-        const extras = sortedProducts.filter(p => !selectedItems.includes(p)).slice(0, 2);
+    addByType('upper');
+    addByType('lower'); // Some outfits might not have lower (e.g. dresses), logic handles this by just skipping
+    addByType('shoes');
+    addByType('accessory');
+
+    // Ensure we have at least 3 items
+    if (selectedItems.length < 3) {
+        const extras = relevantProducts.filter(p => !selectedItems.includes(p)).slice(0, 3 - selectedItems.length);
         selectedItems.push(...extras);
     }
 
     return {
-        description: rules.description,
+        description: `**Vibe: ${selectedVibe.label}**\n\n${selectedVibe.description}`,
         items: selectedItems
     };
 };

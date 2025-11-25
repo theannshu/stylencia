@@ -11,7 +11,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['women', 'wedding', 'upper'],
+        tags: ['women', 'wedding', 'upper', 'classic'],
         color: 'maroon',
         rating: 4.8
     },
@@ -22,7 +22,7 @@ export const products = [
         store: 'Amazon',
         image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.amazon.in/',
-        tags: ['women', 'wedding', 'accessory'],
+        tags: ['women', 'wedding', 'accessory', 'classic'],
         color: 'gold',
         rating: 4.5
     },
@@ -33,7 +33,7 @@ export const products = [
         store: 'Ajio',
         image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.ajio.com/',
-        tags: ['women', 'wedding', 'shoes'],
+        tags: ['women', 'wedding', 'shoes', 'classic'],
         color: 'gold',
         rating: 4.3
     },
@@ -44,9 +44,42 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['women', 'wedding', 'upper'],
+        tags: ['women', 'wedding', 'upper', 'royal'],
         color: 'green',
         rating: 4.9
+    },
+    {
+        id: 'w_wed_5',
+        name: 'Pastel Pink Lehenga',
+        price: '₹5,999',
+        store: 'Ajio',
+        image: 'https://images.unsplash.com/photo-1585963699709-02687538f8a3?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.ajio.com/',
+        tags: ['women', 'wedding', 'upper', 'modern'],
+        color: 'pink',
+        rating: 4.7
+    },
+    {
+        id: 'w_wed_6',
+        name: 'Crystal Choker Necklace',
+        price: '₹999',
+        store: 'Amazon',
+        image: 'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.amazon.in/',
+        tags: ['women', 'wedding', 'accessory', 'modern'],
+        color: 'silver',
+        rating: 4.4
+    },
+    {
+        id: 'w_wed_7',
+        name: 'Designer Clutch (Gold)',
+        price: '₹1,499',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['women', 'wedding', 'accessory', 'royal'],
+        color: 'gold',
+        rating: 4.6
     },
 
     // --- OFFICE ---
@@ -57,7 +90,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1598554747436-c9293d6a588f?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['women', 'office', 'upper'],
+        tags: ['women', 'office', 'upper', 'classic'],
         color: 'white',
         rating: 4.4
     },
@@ -68,7 +101,7 @@ export const products = [
         store: 'Flipkart',
         image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.flipkart.com/',
-        tags: ['women', 'office', 'lower'],
+        tags: ['women', 'office', 'lower', 'classic'],
         color: 'beige',
         rating: 4.2
     },
@@ -79,7 +112,7 @@ export const products = [
         store: 'Amazon',
         image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.amazon.in/',
-        tags: ['women', 'office', 'accessory'],
+        tags: ['women', 'office', 'accessory', 'classic'],
         color: 'tan',
         rating: 4.6
     },
@@ -90,9 +123,42 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1548624149-f321924d6872?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['women', 'office', 'upper'],
+        tags: ['women', 'office', 'upper', 'power'],
         color: 'black',
         rating: 4.7
+    },
+    {
+        id: 'w_off_5',
+        name: 'Pencil Skirt (Grey)',
+        price: '₹1,299',
+        store: 'Ajio',
+        image: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.ajio.com/',
+        tags: ['women', 'office', 'lower', 'power'],
+        color: 'grey',
+        rating: 4.3
+    },
+    {
+        id: 'w_off_6',
+        name: 'Pointed Toe Heels',
+        price: '₹1,999',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1534653299134-96a171b61581?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['women', 'office', 'shoes', 'power'],
+        color: 'black',
+        rating: 4.5
+    },
+    {
+        id: 'w_off_7',
+        name: 'Silk Blouse (Navy)',
+        price: '₹1,799',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1551163943-3f6a29e3945a?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['women', 'office', 'upper', 'chic'],
+        color: 'navy',
+        rating: 4.6
     },
 
     // --- DATE ---
@@ -103,7 +169,7 @@ export const products = [
         store: 'Ajio',
         image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.ajio.com/',
-        tags: ['women', 'date', 'upper'],
+        tags: ['women', 'date', 'upper', 'glam'],
         color: 'black',
         rating: 4.8
     },
@@ -114,7 +180,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['women', 'date', 'shoes'],
+        tags: ['women', 'date', 'shoes', 'glam'],
         color: 'red',
         rating: 4.5
     },
@@ -125,9 +191,42 @@ export const products = [
         store: 'Amazon',
         image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.amazon.in/',
-        tags: ['women', 'date', 'accessory'],
+        tags: ['women', 'date', 'accessory', 'glam'],
         color: 'silver',
         rating: 4.3
+    },
+    {
+        id: 'w_date_4',
+        name: 'Satin Slip Dress (Champagne)',
+        price: '₹2,499',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['women', 'date', 'upper', 'romantic'],
+        color: 'beige',
+        rating: 4.7
+    },
+    {
+        id: 'w_date_5',
+        name: 'Delicate Pendant Necklace',
+        price: '₹799',
+        store: 'Amazon',
+        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.amazon.in/',
+        tags: ['women', 'date', 'accessory', 'romantic'],
+        color: 'gold',
+        rating: 4.4
+    },
+    {
+        id: 'w_date_6',
+        name: 'Leather Mini Skirt',
+        price: '₹1,699',
+        store: 'Ajio',
+        image: 'https://images.unsplash.com/photo-1582142327529-471b16e7f1e4?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.ajio.com/',
+        tags: ['women', 'date', 'lower', 'edgy'],
+        color: 'black',
+        rating: 4.5
     },
 
     // --- CASUAL ---
@@ -138,7 +237,7 @@ export const products = [
         store: 'Ajio',
         image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.ajio.com/',
-        tags: ['women', 'casual', 'upper'],
+        tags: ['women', 'casual', 'upper', 'boho'],
         color: 'multi',
         rating: 4.4
     },
@@ -149,7 +248,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['women', 'casual', 'shoes'],
+        tags: ['women', 'casual', 'shoes', 'streetwear'],
         color: 'white',
         rating: 4.7
     },
@@ -160,9 +259,42 @@ export const products = [
         store: 'Flipkart',
         image: 'https://images.unsplash.com/photo-1544642899-f0d6e5f6ed6f?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.flipkart.com/',
-        tags: ['women', 'casual', 'upper'],
+        tags: ['women', 'casual', 'upper', 'streetwear'],
         color: 'blue',
         rating: 4.5
+    },
+    {
+        id: 'w_cas_4',
+        name: 'Oversized Graphic Tee',
+        price: '₹699',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['women', 'casual', 'upper', 'streetwear'],
+        color: 'black',
+        rating: 4.6
+    },
+    {
+        id: 'w_cas_5',
+        name: 'Mom Jeans',
+        price: '₹1,299',
+        store: 'Ajio',
+        image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.ajio.com/',
+        tags: ['women', 'casual', 'lower', 'streetwear'],
+        color: 'blue',
+        rating: 4.5
+    },
+    {
+        id: 'w_cas_6',
+        name: 'Maxi Skirt (Floral)',
+        price: '₹1,199',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['women', 'casual', 'lower', 'boho'],
+        color: 'multi',
+        rating: 4.3
     },
 
     // ==========================================
@@ -177,7 +309,7 @@ export const products = [
         store: 'Manyavar',
         image: 'https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.manyavar.com/',
-        tags: ['men', 'wedding', 'upper'],
+        tags: ['men', 'wedding', 'upper', 'royal'],
         color: 'navy',
         rating: 4.9
     },
@@ -188,7 +320,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['men', 'wedding', 'shoes'],
+        tags: ['men', 'wedding', 'shoes', 'royal'],
         color: 'gold',
         rating: 4.4
     },
@@ -199,9 +331,31 @@ export const products = [
         store: 'Ajio',
         image: 'https://images.unsplash.com/photo-1589810635657-232948472d98?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.ajio.com/',
-        tags: ['men', 'wedding', 'upper'],
+        tags: ['men', 'wedding', 'upper', 'classic'],
         color: 'cream',
         rating: 4.6
+    },
+    {
+        id: 'm_wed_4',
+        name: 'Nehru Jacket (Floral)',
+        price: '₹1,999',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['men', 'wedding', 'upper', 'modern'],
+        color: 'multi',
+        rating: 4.5
+    },
+    {
+        id: 'm_wed_5',
+        name: 'Jodhpuri Suit (Black)',
+        price: '₹7,499',
+        store: 'Manyavar',
+        image: 'https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.manyavar.com/',
+        tags: ['men', 'wedding', 'upper', 'royal'],
+        color: 'black',
+        rating: 4.8
     },
 
     // --- OFFICE ---
@@ -212,7 +366,7 @@ export const products = [
         store: 'Amazon',
         image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.amazon.in/',
-        tags: ['men', 'office', 'upper'],
+        tags: ['men', 'office', 'upper', 'classic'],
         color: 'blue',
         rating: 4.3
     },
@@ -223,7 +377,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['men', 'office', 'lower'],
+        tags: ['men', 'office', 'lower', 'classic'],
         color: 'grey',
         rating: 4.2
     },
@@ -234,9 +388,42 @@ export const products = [
         store: 'Flipkart',
         image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.flipkart.com/',
-        tags: ['men', 'office', 'accessory'],
+        tags: ['men', 'office', 'accessory', 'classic'],
         color: 'brown',
         rating: 4.7
+    },
+    {
+        id: 'm_off_4',
+        name: 'Checkered Shirt',
+        price: '₹1,399',
+        store: 'Ajio',
+        image: 'https://images.unsplash.com/photo-1589310243389-96a5483213a8?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.ajio.com/',
+        tags: ['men', 'office', 'upper', 'modern'],
+        color: 'multi',
+        rating: 4.4
+    },
+    {
+        id: 'm_off_5',
+        name: 'Chinos (Beige)',
+        price: '₹1,499',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['men', 'office', 'lower', 'modern'],
+        color: 'beige',
+        rating: 4.5
+    },
+    {
+        id: 'm_off_6',
+        name: 'Oxford Shoes (Brown)',
+        price: '₹2,499',
+        store: 'Amazon',
+        image: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.amazon.in/',
+        tags: ['men', 'office', 'shoes', 'classic'],
+        color: 'brown',
+        rating: 4.6
     },
 
     // --- DATE ---
@@ -247,7 +434,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['men', 'date', 'upper'],
+        tags: ['men', 'date', 'upper', 'minimalist'],
         color: 'black',
         rating: 4.6
     },
@@ -258,7 +445,7 @@ export const products = [
         store: 'Ajio',
         image: 'https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.ajio.com/',
-        tags: ['men', 'date', 'shoes'],
+        tags: ['men', 'date', 'shoes', 'minimalist'],
         color: 'brown',
         rating: 4.8
     },
@@ -269,8 +456,41 @@ export const products = [
         store: 'Amazon',
         image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.amazon.in/',
-        tags: ['men', 'date', 'accessory'],
+        tags: ['men', 'date', 'accessory', 'minimalist'],
         color: 'silver',
+        rating: 4.5
+    },
+    {
+        id: 'm_date_4',
+        name: 'Leather Jacket',
+        price: '₹4,999',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['men', 'date', 'upper', 'edgy'],
+        color: 'black',
+        rating: 4.9
+    },
+    {
+        id: 'm_date_5',
+        name: 'Black Jeans',
+        price: '₹1,999',
+        store: 'Flipkart',
+        image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.flipkart.com/',
+        tags: ['men', 'date', 'lower', 'edgy'],
+        color: 'black',
+        rating: 4.7
+    },
+    {
+        id: 'm_date_6',
+        name: 'Linen Shirt (White)',
+        price: '₹1,599',
+        store: 'Ajio',
+        image: 'https://images.unsplash.com/photo-1589310243389-96a5483213a8?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.ajio.com/',
+        tags: ['men', 'date', 'upper', 'casual-chic'],
+        color: 'white',
         rating: 4.5
     },
 
@@ -282,7 +502,7 @@ export const products = [
         store: 'Ajio',
         image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.ajio.com/',
-        tags: ['men', 'casual', 'upper'],
+        tags: ['men', 'casual', 'upper', 'streetwear'],
         color: 'white',
         rating: 4.1
     },
@@ -293,7 +513,7 @@ export const products = [
         store: 'Myntra',
         image: 'https://images.unsplash.com/photo-1542272617-08f08630329e?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.myntra.com/',
-        tags: ['men', 'casual', 'lower'],
+        tags: ['men', 'casual', 'lower', 'streetwear'],
         color: 'blue',
         rating: 4.5
     },
@@ -304,8 +524,41 @@ export const products = [
         store: 'Nike',
         image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800&auto=format&fit=crop',
         link: 'https://www.nike.com/',
-        tags: ['men', 'casual', 'shoes'],
+        tags: ['men', 'casual', 'shoes', 'streetwear'],
         color: 'white',
         rating: 4.8
+    },
+    {
+        id: 'm_cas_4',
+        name: 'Hoodie (Grey)',
+        price: '₹1,499',
+        store: 'Myntra',
+        image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.myntra.com/',
+        tags: ['men', 'casual', 'upper', 'relaxed'],
+        color: 'grey',
+        rating: 4.6
+    },
+    {
+        id: 'm_cas_5',
+        name: 'Cargo Pants',
+        price: '₹1,799',
+        store: 'Flipkart',
+        image: 'https://images.unsplash.com/photo-1517445312882-56e1b950d1dc?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.flipkart.com/',
+        tags: ['men', 'casual', 'lower', 'relaxed'],
+        color: 'green',
+        rating: 4.4
+    },
+    {
+        id: 'm_cas_6',
+        name: 'Polo T-Shirt',
+        price: '₹899',
+        store: 'Amazon',
+        image: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?q=80&w=800&auto=format&fit=crop',
+        link: 'https://www.amazon.in/',
+        tags: ['men', 'casual', 'upper', 'classic'],
+        color: 'navy',
+        rating: 4.3
     }
 ];
