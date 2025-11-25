@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, RefreshCw, User } from 'lucide-react';
-import { products } from '../data/products';
+import { Sparkles, RefreshCw, User, Info } from 'lucide-react';
+import { generateOutfit } from '../utils/fashionLogic';
 import ProductCard from './ProductCard';
 
 const occasions = [
@@ -15,21 +15,17 @@ const StylingDemo = () => {
     const [selectedOccasion, setSelectedOccasion] = useState(null);
     const [gender, setGender] = useState('women'); // 'women' or 'men'
     const [isGenerating, setIsGenerating] = useState(false);
-    const [resultProducts, setResultProducts] = useState([]);
+    const [result, setResult] = useState(null); // { description: string, items: [] }
 
     const handleGenerate = () => {
         if (!selectedOccasion) return;
         setIsGenerating(true);
-        setResultProducts([]);
+        setResult(null);
 
-        // Simulate AI processing
+        // Simulate Expert Engine processing
         setTimeout(() => {
-            // Filter products based on gender and occasion
-            const filtered = products.filter(p =>
-                p.tags.includes(gender) && p.tags.includes(selectedOccasion)
-            );
-
-            setResultProducts(filtered);
+            const outfit = generateOutfit(gender, selectedOccasion);
+            setResult(outfit);
             setIsGenerating(false);
         }, 1500);
     };
@@ -37,22 +33,22 @@ const StylingDemo = () => {
     return (
         <section id="demo" className="py-20 bg-[#0f0c29] text-white">
             <div className="container mx-auto px-4 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Try the AI Stylist</h2>
-                <p className="text-gray-400 mb-8">Select your preferences to get a curated look with shoppable links.</p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ask Stylencia</h2>
+                <p className="text-gray-400 mb-8">Select your preferences to get a curated look designed by fashion experts.</p>
 
-                <div className="max-w-5xl mx-auto bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-2xl">
+                <div className="max-w-6xl mx-auto bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-2xl">
 
                     {/* Gender Filter */}
                     <div className="flex justify-center mb-8">
                         <div className="bg-black/40 p-1 rounded-full flex items-center border border-white/10">
                             <button
-                                onClick={() => { setGender('women'); setResultProducts([]); }}
+                                onClick={() => { setGender('women'); setResult(null); }}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${gender === 'women' ? 'bg-purple-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}
                             >
                                 Women
                             </button>
                             <button
-                                onClick={() => { setGender('men'); setResultProducts([]); }}
+                                onClick={() => { setGender('men'); setResult(null); }}
                                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${gender === 'men' ? 'bg-blue-600 text-white shadow-lg' : 'text-gray-400 hover:text-white'}`}
                             >
                                 Men
@@ -65,7 +61,7 @@ const StylingDemo = () => {
                         {occasions.map((occ) => (
                             <button
                                 key={occ.id}
-                                onClick={() => { setSelectedOccasion(occ.id); setResultProducts([]); }}
+                                onClick={() => { setSelectedOccasion(occ.id); setResult(null); }}
                                 className={`p-4 rounded-xl border transition-all duration-300 flex flex-col items-center gap-2
                   ${selectedOccasion === occ.id
                                         ? 'bg-purple-600/20 border-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)]'
@@ -104,17 +100,29 @@ const StylingDemo = () => {
                     {/* Results Area */}
                     <div className="min-h-[200px]">
                         <AnimatePresence mode="wait">
-                            {resultProducts.length > 0 ? (
+                            {result ? (
                                 <motion.div
                                     key="results"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                                    className="text-left"
                                 >
-                                    {resultProducts.map((product) => (
-                                        <ProductCard key={product.id} product={product} />
-                                    ))}
+                                    {/* Outfit Summary Box */}
+                                    <div className="bg-gradient-to-r from-purple-900/40 to-pink-900/40 border border-purple-500/30 rounded-xl p-6 mb-8 flex items-start gap-4">
+                                        <Info className="w-6 h-6 text-purple-300 flex-shrink-0 mt-1" />
+                                        <div>
+                                            <h3 className="text-lg font-bold text-purple-200 mb-2">Stylencia's Pick</h3>
+                                            <p className="text-gray-200 leading-relaxed">{result.description}</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Product Grid */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                                        {result.items.map((product) => (
+                                            <ProductCard key={product.id} product={product} />
+                                        ))}
+                                    </div>
                                 </motion.div>
                             ) : (
                                 !isGenerating && (
@@ -125,7 +133,7 @@ const StylingDemo = () => {
                                         className="flex flex-col items-center justify-center h-40 text-gray-500 italic"
                                     >
                                         <User className="w-12 h-12 mb-2 opacity-20" />
-                                        <p>Select gender & occasion to see AI recommendations.</p>
+                                        <p>Select gender & occasion to see Stylencia's recommendations.</p>
                                     </motion.div>
                                 )
                             )}
