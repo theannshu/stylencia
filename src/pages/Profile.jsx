@@ -112,8 +112,8 @@ const Profile = () => {
                                         type="button"
                                         onClick={() => setFormData(prev => ({ ...prev, skinTone: tone.id }))}
                                         className={`w-10 h-10 rounded-full border-2 transition-all relative ${formData.skinTone === tone.id
-                                                ? 'border-white scale-110 shadow-[0_0_10px_rgba(255,255,255,0.5)]'
-                                                : 'border-transparent hover:scale-105'
+                                            ? 'border-white scale-110 shadow-[0_0_10px_rgba(255,255,255,0.5)]'
+                                            : 'border-transparent hover:scale-105'
                                             }`}
                                         style={{ backgroundColor: tone.color }}
                                         title={tone.label}
@@ -127,6 +127,73 @@ const Profile = () => {
                                 ))}
                             </div>
                             <p className="text-xs text-purple-300 ml-1">Selected: {skinTones.find(t => t.id === formData.skinTone)?.label || 'None'}</p>
+                        </div>
+
+                        <div className="space-y-3">
+                            <label className="block text-sm font-medium text-purple-200">Age</label>
+                            <input
+                                type="number"
+                                name="age"
+                                value={formData.age}
+                                onChange={handleChange}
+                                className="w-full px-5 py-3 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white placeholder-gray-400"
+                                placeholder="e.g. 25"
+                            />
+                        </div>
+
+                        <div className="space-y-3">
+                            <label className="block text-sm font-medium text-purple-200">Hair Color</label>
+                            <select
+                                name="hairColor"
+                                value={formData.hairColor}
+                                onChange={handleChange}
+                                className="w-full px-5 py-3 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white"
+                            >
+                                <option value="" className="bg-gray-900">Select Hair Color</option>
+                                <option value="black" className="bg-gray-900">Black</option>
+                                <option value="brown" className="bg-gray-900">Brown</option>
+                                <option value="blonde" className="bg-gray-900">Blonde</option>
+                                <option value="red" className="bg-gray-900">Red</option>
+                                <option value="gray" className="bg-gray-900">Gray</option>
+                                <option value="white" className="bg-gray-900">White</option>
+                                <option value="colored" className="bg-gray-900">Colored/Dyed</option>
+                            </select>
+                        </div>
+
+                        <div className="space-y-3">
+                            <label className="block text-sm font-medium text-purple-200">Eye Color</label>
+                            <select
+                                name="eyeColor"
+                                value={formData.eyeColor}
+                                onChange={handleChange}
+                                className="w-full px-5 py-3 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white"
+                            >
+                                <option value="" className="bg-gray-900">Select Eye Color</option>
+                                <option value="brown" className="bg-gray-900">Brown</option>
+                                <option value="blue" className="bg-gray-900">Blue</option>
+                                <option value="green" className="bg-gray-900">Green</option>
+                                <option value="hazel" className="bg-gray-900">Hazel</option>
+                                <option value="gray" className="bg-gray-900">Gray</option>
+                                <option value="amber" className="bg-gray-900">Amber</option>
+                            </select>
+                        </div>
+
+                        <div className="space-y-3">
+                            <label className="block text-sm font-medium text-purple-200">Face Structure</label>
+                            <select
+                                name="faceStructure"
+                                value={formData.faceStructure}
+                                onChange={handleChange}
+                                className="w-full px-5 py-3 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white"
+                            >
+                                <option value="" className="bg-gray-900">Select Face Shape</option>
+                                <option value="oval" className="bg-gray-900">Oval</option>
+                                <option value="round" className="bg-gray-900">Round</option>
+                                <option value="square" className="bg-gray-900">Square</option>
+                                <option value="diamond" className="bg-gray-900">Diamond</option>
+                                <option value="heart" className="bg-gray-900">Heart</option>
+                                <option value="oblong" className="bg-gray-900">Oblong</option>
+                            </select>
                         </div>
                     </div>
 

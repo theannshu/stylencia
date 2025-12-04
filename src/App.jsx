@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import Profile from './pages/Profile';
 import Wardrobe from './pages/Wardrobe';
 import Stylist from './pages/Stylist';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import BackgroundLayout from './components/BackgroundLayout';
 
 const Home = () => (
@@ -32,6 +34,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/wardrobe" element={<Wardrobe />} />
               <Route path="/stylist" element={<Stylist />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
             </Routes>
           </main>
           <Footer />
