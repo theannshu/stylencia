@@ -1,19 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY_HERE",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyAkwx8w1Q9lCFzYdncs51OWV_w6OsaPxww",
+    authDomain: "stylenciadotme.firebaseapp.com",
+    projectId: "stylenciadotme",
+    storageBucket: "stylenciadotme.firebasestorage.app",
+    messagingSenderId: "129027062202",
+    appId: "1:129027062202:web:6e850f2f1172df47ab4583",
+    measurementId: "G-7TNMND17YF"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export const analytics = getAnalytics(app);
