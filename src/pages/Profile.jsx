@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
-import { Save, User, Sparkles } from 'lucide-react';
+import { Save, User, Sparkles, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { BodyTypeIcons } from '../components/BodyTypeIcons';
+
+const skinTones = [
+    { id: 'fair', color: '#F5E0D8', label: 'Fair' },
+    { id: 'medium', color: '#EAC0A6', label: 'Medium' },
+    { id: 'olive', color: '#D4AA78', label: 'Olive' },
+    { id: 'brown', color: '#8D5524', label: 'Brown' },
+    { id: 'dark', color: '#3B2219', label: 'Dark' }
+];
 
 const Profile = () => {
     const { userProfile, updateProfile } = useUser();
@@ -96,19 +105,28 @@ const Profile = () => {
 
                         <div className="space-y-3">
                             <label className="block text-sm font-medium text-purple-200">Skin Tone</label>
-                            <select
-                                name="skinTone"
-                                value={formData.skinTone}
-                                onChange={handleChange}
-                                className="w-full px-5 py-3 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white"
-                            >
-                                <option value="" className="bg-gray-900">Select Skin Tone</option>
-                                <option value="fair" className="bg-gray-900">Fair</option>
-                                <option value="medium" className="bg-gray-900">Medium</option>
-                                <option value="olive" className="bg-gray-900">Olive</option>
-                                <option value="brown" className="bg-gray-900">Brown</option>
-                                <option value="dark" className="bg-gray-900">Dark</option>
-                            </select>
+                            <div className="flex gap-3 flex-wrap">
+                                {skinTones.map((tone) => (
+                                    <button
+                                        key={tone.id}
+                                        type="button"
+                                        onClick={() => setFormData(prev => ({ ...prev, skinTone: tone.id }))}
+                                        className={`w-10 h-10 rounded-full border-2 transition-all relative ${formData.skinTone === tone.id
+                                                ? 'border-white scale-110 shadow-[0_0_10px_rgba(255,255,255,0.5)]'
+                                                : 'border-transparent hover:scale-105'
+                                            }`}
+                                        style={{ backgroundColor: tone.color }}
+                                        title={tone.label}
+                                    >
+                                        {formData.skinTone === tone.id && (
+                                            <div className="absolute inset-0 flex items-center justify-center text-black/50">
+                                                <Check size={16} strokeWidth={3} />
+                                            </div>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                            <p className="text-xs text-purple-300 ml-1">Selected: {skinTones.find(t => t.id === formData.skinTone)?.label || 'None'}</p>
                         </div>
                     </div>
 
@@ -121,11 +139,14 @@ const Profile = () => {
                                     key={type}
                                     type="button"
                                     onClick={() => setFormData(prev => ({ ...prev, bodyType: type }))}
-                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group ${formData.bodyType === type
-                                            ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)]'
-                                            : 'border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 hover:border-purple-400/50'
+                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group flex flex-col items-center gap-3 ${formData.bodyType === type
+                                        ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)]'
+                                        : 'border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 hover:border-purple-400/50'
                                         }`}
                                 >
+                                    <div className="relative z-10">
+                                        <BodyTypeIcons type={type} className={`w-16 h-16 ${formData.bodyType === type ? 'text-white' : 'text-gray-400 group-hover:text-white transition-colors'}`} />
+                                    </div>
                                     <span className="relative z-10">{type}</span>
                                     {formData.bodyType === type && (
                                         <motion.div
