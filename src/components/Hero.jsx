@@ -18,18 +18,18 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <h1 className="mb-4 text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-200 to-white drop-shadow-lg">
-                        Your AI Fashion Stylist
+                        Your Personal AI<br />Fashion Stylist
                     </h1>
                     <p className="mb-8 text-lg md:text-xl font-normal text-gray-300 lg:text-2xl sm:px-16 xl:px-48 max-w-4xl mx-auto">
-                        Get the perfect outfit suggestions for every occasion. Powered by advanced AI, curated just for you.
+                        Manage your digital wardrobe, get outfit recommendations based on your body type, and shop the perfect look for any occasion.
                     </p>
                     <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                        <a href="#waitlist" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:ring-4 focus:ring-purple-300 shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105">
-                            Get Early Access
+                        <a href="/profile" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:ring-4 focus:ring-purple-300 shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105">
+                            Create Style Profile
                             <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
                         </a>
-                        <a href="#demo" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-300 rounded-lg border border-gray-600 hover:text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-700 backdrop-blur-sm transition-all">
-                            Try Demo
+                        <a href="/stylist" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-300 rounded-lg border border-gray-600 hover:text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-700 backdrop-blur-sm transition-all">
+                            Start Styling
                         </a>
                     </div>
                 </motion.div>

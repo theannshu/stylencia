@@ -1,7 +1,7 @@
 import { products } from '../data/products';
 
 // Vibe Definitions (Style Archetypes)
-const vibes = {
+export const vibes = {
     women: {
         wedding: [
             { id: 'royal', label: 'Royal & Traditional', description: "A majestic look featuring deep colors and heavy embroidery, perfect for a grand celebration." },
@@ -99,5 +99,47 @@ export const generateOutfit = (gender, occasion) => {
     return {
         description: `**Vibe: ${selectedVibe.label}**\n\n${selectedVibe.description}`,
         items: selectedItems
+    };
+};
+
+export const getWardrobeSuggestions = (wardrobe, occasion, gender) => {
+    // 1. From your Closet (Complete outfits from wardrobe)
+    const closetItems = wardrobe.filter(item => item.occasion === occasion);
+    const closetOutfit = {
+        upper: closetItems.find(i => i.type === 'upper'),
+        lower: closetItems.find(i => i.type === 'lower'),
+        shoes: closetItems.find(i => i.type === 'shoes'),
+        accessory: closetItems.find(i => i.type === 'accessory')
+    };
+
+    const hasFullOutfit = closetOutfit.upper && (closetOutfit.lower || closetOutfit.shoes);
+
+    // 2. Mix & Match (Wardrobe + Store)
+    // Find a wardrobe item to build around
+    const baseItem = closetItems.length > 0 ? closetItems[Math.floor(Math.random() * closetItems.length)] : null;
+    let mixMatchItems = [];
+
+    if (baseItem) {
+        mixMatchItems.push(baseItem);
+
+        // Find complementary items from store
+        const neededTypes = ['upper', 'lower', 'shoes', 'accessory'].filter(t => t !== baseItem.type);
+
+        neededTypes.forEach(type => {
+            // Simple logic: find store item of needed type for same occasion/gender
+            // In a real app, we'd match colors/styles
+            const match = products.find(p =>
+                p.tags.includes(gender) &&
+                p.tags.includes(occasion) &&
+                p.tags.includes(type)
+            );
+            if (match) mixMatchItems.push(match);
+        });
+    }
+
+    return {
+        closet: hasFullOutfit ? Object.values(closetOutfit).filter(Boolean) : [],
+        mixMatch: mixMatchItems,
+        newLook: generateOutfit(gender, occasion)
     };
 };

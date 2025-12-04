@@ -1,22 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shirt, Calendar, ShoppingBag } from 'lucide-react';
+import { Shirt, Sparkles, User } from 'lucide-react';
 
 const features = [
     {
         icon: <Shirt className="w-8 h-8 text-purple-400" />,
-        title: "Smart Outfit Matching",
-        description: "AI recommends upper, lower, and accessories tailored to your specific occasion and style preferences."
+        title: "Digital Wardrobe",
+        description: "Catalog your own clothes. Add tops, bottoms, and shoes to your personal digital closet for easy management."
     },
     {
-        icon: <Calendar className="w-8 h-8 text-pink-400" />,
-        title: "Occasion-Based Styling",
-        description: "Be it weddings, office, or casual outings — Stylencia understands the context and dresses you accordingly."
+        icon: <Sparkles className="w-8 h-8 text-pink-400" />,
+        title: "Mix & Match",
+        description: "Don't know what to wear? Our AI suggests outfits by mixing your existing wardrobe with new trendy pieces."
     },
     {
-        icon: <ShoppingBag className="w-8 h-8 text-blue-400" />,
-        title: "Direct Purchase Links",
-        description: "Buy recommended outfits instantly with trusted shopping partners. No more endless searching."
+        icon: <User className="w-8 h-8 text-blue-400" />,
+        title: "Personalized Profile",
+        description: "Get recommendations tailored to your unique body type, skin tone, and height. Fashion that fits YOU."
     }
 ];
 

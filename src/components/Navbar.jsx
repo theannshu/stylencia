@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, User, Shirt, Sparkles } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path;
 
     return (
         <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-white/10 backdrop-blur-md">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-bold whitespace-nowrap text-white tracking-tight">Stylencia</span>
-                </a>
+                </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <a href="#waitlist" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 shadow-lg hover:shadow-purple-500/50">
-                        Join Waitlist
-                    </a>
+                    <Link to="/profile" className="flex items-center gap-2 text-white bg-white/10 hover:bg-white/20 focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all duration-300">
+                        <User size={18} />
+                        <span className="hidden md:inline">Profile</span>
+                    </Link>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
                         type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-300 rounded-lg md:hidden hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                        aria-controls="navbar-sticky"
-                        aria-expanded={isOpen}
+                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-300 rounded-lg md:hidden hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-gray-200 ml-2"
                     >
                         <span className="sr-only">Open main menu</span>
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -28,13 +31,17 @@ const Navbar = () => {
                 <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${isOpen ? 'block' : 'hidden'}`} id="navbar-sticky">
                     <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-900/50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white bg-purple-700 rounded md:bg-transparent md:text-purple-400 md:p-0" aria-current="page">Home</a>
+                            <Link to="/" className={`block py-2 px-3 rounded md:p-0 transition-colors ${isActive('/') ? 'text-purple-400' : 'text-gray-300 hover:text-white'}`}>Home</Link>
                         </li>
                         <li>
-                            <a href="#features" className="block py-2 px-3 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 transition-colors">Features</a>
+                            <Link to="/wardrobe" className={`block py-2 px-3 rounded md:p-0 transition-colors flex items-center gap-1 ${isActive('/wardrobe') ? 'text-purple-400' : 'text-gray-300 hover:text-white'}`}>
+                                <Shirt size={16} /> Wardrobe
+                            </Link>
                         </li>
                         <li>
-                            <a href="#demo" className="block py-2 px-3 text-gray-300 rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-purple-400 md:p-0 transition-colors">AI Demo</a>
+                            <Link to="/stylist" className={`block py-2 px-3 rounded md:p-0 transition-colors flex items-center gap-1 ${isActive('/stylist') ? 'text-purple-400' : 'text-gray-300 hover:text-white'}`}>
+                                <Sparkles size={16} /> Stylist
+                            </Link>
                         </li>
                     </ul>
                 </div>
