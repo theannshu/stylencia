@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Profile from './pages/Profile';
 import Wardrobe from './pages/Wardrobe';
 import Stylist from './pages/Stylist';
+import BackgroundLayout from './components/BackgroundLayout';
 
 const Home = () => (
   <>
@@ -22,18 +23,20 @@ const Home = () => (
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-[#0f0c29] text-white font-sans selection:bg-purple-500 selection:text-white">
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/wardrobe" element={<Wardrobe />} />
-            <Route path="/stylist" element={<Stylist />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <BackgroundLayout>
+        <div className="min-h-screen font-sans selection:bg-purple-500 selection:text-white">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/wardrobe" element={<Wardrobe />} />
+              <Route path="/stylist" element={<Stylist />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BackgroundLayout>
     </Router>
   );
 }
