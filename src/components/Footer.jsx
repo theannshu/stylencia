@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="mt-4 flex justify-center space-x-4">
                     <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" className="hover:text-white transition-colors">Contact</a>
+                    <a href="mailto:stylencia.me@gmail.com" className="hover:text-white transition-colors">Contact</a>
                 </div>
             </div>
         </footer>
