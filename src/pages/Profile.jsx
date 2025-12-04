@@ -50,7 +50,7 @@ const Profile = () => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
                                 placeholder="Your Name"
                             />
                         </div>
@@ -61,7 +61,7 @@ const Profile = () => {
                                 name="gender"
                                 value={formData.gender}
                                 onChange={handleChange}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
                             >
                                 <option value="women">Women</option>
                                 <option value="men">Men</option>
@@ -76,7 +76,7 @@ const Profile = () => {
                                 name="height"
                                 value={formData.height}
                                 onChange={handleChange}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
                                 placeholder="e.g. 165"
                             />
                         </div>
@@ -87,7 +87,7 @@ const Profile = () => {
                                 name="skinTone"
                                 value={formData.skinTone}
                                 onChange={handleChange}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 bg-white"
                             >
                                 <option value="">Select Skin Tone</option>
                                 <option value="fair">Fair</option>
@@ -109,8 +109,8 @@ const Profile = () => {
                                     type="button"
                                     onClick={() => setFormData(prev => ({ ...prev, bodyType: type }))}
                                     className={`p-4 rounded-xl border-2 transition-all text-sm font-medium ${formData.bodyType === type
-                                            ? 'border-purple-600 bg-purple-50 text-purple-700'
-                                            : 'border-gray-200 hover:border-purple-300 text-gray-600'
+                                        ? 'border-purple-600 bg-purple-50 text-purple-700'
+                                        : 'border-gray-200 hover:border-purple-300 text-gray-600'
                                         }`}
                                 >
                                     {type}
