@@ -3,6 +3,7 @@ import { useUser } from '../context/UserContext';
 import { Save, User, Sparkles, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { BodyTypeIcons } from '../components/BodyTypeIcons';
+import { FaceShapeIcons } from '../components/FaceShapeIcons';
 
 const skinTones = [
     { id: 'fair', color: '#F5E0D8', label: 'Fair' },
@@ -177,23 +178,34 @@ const Profile = () => {
                                 <option value="amber" className="bg-gray-900">Amber</option>
                             </select>
                         </div>
+                    </div>
 
-                        <div className="space-y-3">
-                            <label className="block text-sm font-medium text-purple-200">Face Structure</label>
-                            <select
-                                name="faceStructure"
-                                value={formData.faceStructure}
-                                onChange={handleChange}
-                                className="w-full px-5 py-3 bg-black/20 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white"
-                            >
-                                <option value="" className="bg-gray-900">Select Face Shape</option>
-                                <option value="oval" className="bg-gray-900">Oval</option>
-                                <option value="round" className="bg-gray-900">Round</option>
-                                <option value="square" className="bg-gray-900">Square</option>
-                                <option value="diamond" className="bg-gray-900">Diamond</option>
-                                <option value="heart" className="bg-gray-900">Heart</option>
-                                <option value="oblong" className="bg-gray-900">Oblong</option>
-                            </select>
+                    {/* Face Structure Section */}
+                    <div className="space-y-4 pt-4 border-t border-white/10">
+                        <label className="block text-lg font-medium text-purple-200">Face Shape</label>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            {['oval', 'round', 'square', 'diamond', 'heart', 'oblong'].map((shape) => (
+                                <button
+                                    key={shape}
+                                    type="button"
+                                    onClick={() => setFormData(prev => ({ ...prev, faceStructure: shape }))}
+                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group flex flex-col items-center gap-3 ${formData.faceStructure === shape
+                                        ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)]'
+                                        : 'border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 hover:border-purple-400/50'
+                                        }`}
+                                >
+                                    <div className="relative z-10">
+                                        <FaceShapeIcons type={shape} className={`w-16 h-16 ${formData.faceStructure === shape ? 'text-white' : 'text-gray-400 group-hover:text-white transition-colors'}`} />
+                                    </div>
+                                    <span className="relative z-10 capitalize">{shape}</span>
+                                    {formData.faceStructure === shape && (
+                                        <motion.div
+                                            layoutId="activeFaceShape"
+                                            className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"
+                                        />
+                                    )}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
