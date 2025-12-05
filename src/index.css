@@ -3,3 +3,48 @@
 body {
   @apply bg-slate-50 text-slate-900;
 }
+
+/* Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0c29; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #4c1d95, #db2777); 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #5b21b6, #be185d); 
+}
+
+/* Luxury Selection */
+::selection {
+  background: rgba(219, 39, 119, 0.3); /* Pink-600 with opacity */
+  color: white;
+}
+
+/* Lenis Recommended Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
