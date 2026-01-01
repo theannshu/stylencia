@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     return (
@@ -24,13 +25,13 @@ const Hero = () => {
                         Manage your digital wardrobe, get outfit recommendations based on your body type, and shop the perfect look for any occasion.
                     </p>
                     <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                        <a href="/profile" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:ring-4 focus:ring-purple-300 shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105">
+                        <Link to="/profile" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:ring-4 focus:ring-purple-300 shadow-lg shadow-purple-500/30 transition-all transform hover:scale-105">
                             Create Style Profile
                             <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
-                        </a>
-                        <a href="/stylist" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-300 rounded-lg border border-gray-600 hover:text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-700 backdrop-blur-sm transition-all">
+                        </Link>
+                        <Link to="/stylist" className="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-300 rounded-lg border border-gray-600 hover:text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-700 backdrop-blur-sm transition-all">
                             Start Styling
-                        </a>
+                        </Link>
                     </div>
                 </motion.div>
             </div>
@@ -39,3 +40,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

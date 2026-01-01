@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import FashionThrobber from '../components/FashionThrobber';
 
 const UserContext = createContext();
 
@@ -89,7 +90,7 @@ export const UserProvider = ({ children }) => {
 
     return (
         <UserContext.Provider value={value}>
-            {!loading && children}
+            {loading ? <FashionThrobber /> : children}
         </UserContext.Provider>
     );
 };
