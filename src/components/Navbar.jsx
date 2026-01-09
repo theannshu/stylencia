@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, User, Shirt, Sparkles, LogIn, LogOut } from 'lucide-react';
 import { useUser } from '../context/UserContext';
+import Logo from './Logo';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +24,8 @@ const Navbar = () => {
     return (
         <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-[#0f0c29]/80 backdrop-blur-xl shadow-lg">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <span className="self-center text-2xl font-bold whitespace-nowrap text-white tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-pink-200">Stylencia</span>
+                <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse hover:opacity-80 transition-opacity">
+                    <Logo className="w-10 h-10" showText={true} />
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center gap-4">
                     {currentUser ? (
