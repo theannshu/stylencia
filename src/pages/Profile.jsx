@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../context/UserContext';
 import { Save, User, Sparkles, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,6 +17,10 @@ const Profile = () => {
     const { userProfile, updateProfile } = useUser();
     const [formData, setFormData] = useState(userProfile);
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        setFormData(userProfile);
+    }, [userProfile]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
