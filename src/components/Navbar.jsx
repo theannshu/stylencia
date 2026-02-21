@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, User, Shirt, Sparkles, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useUser } from '../context/UserContext';
 import Logo from './Logo';
 
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { currentUser, logout } = useUser();
+const CustomNavLink = ({ to, children, active }) => (
+    <Link
+        to={to}
+        className={`relative text-sm font-medium transition-colors duration-300 ${active ? 'text-white' : 'text-gray-400 hover:text-white'
+            }`}
+    >
+        {children}
+        <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${active ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
+            }`} />
+    </Link>
+);
 
-    const isActive = (path) => location.pathname === path;
+const Navbar = () => {
+    const [scrolled, setScrolled] = useState(false);
+    const { currentUser, logout, wardrobe, userProfile } = useUser();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const handleLogout = async () => {
         try {
@@ -21,58 +40,86 @@ const Navbar = () => {
         }
     };
 
+    const isActive = (path) => location.pathname === path;
+
     return (
-        <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-[#0f0c29]/80 backdrop-blur-xl shadow-lg">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse hover:opacity-80 transition-opacity">
-                    <Logo className="w-10 h-10" showText={true} />
+        <motion.nav
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
+                ? 'bg-[#050510]/60 backdrop-blur-xl border-white/5 py-3'
+                : 'bg-transparent border-transparent py-5'
+                }`}
+        >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <Link to="/" className="group">
+                    <Logo showText={true} className="group-hover:scale-105 transition-transform duration-300" textClassName="text-2xl" />
                 </Link>
-                <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center gap-4">
+
+                <div className="hidden md:flex items-center gap-8">
+                    <CustomNavLink to="/" active={isActive('/')}>Home</CustomNavLink>
+                    <CustomNavLink to="/features" active={isActive('/features')}>Features</CustomNavLink>
+                    {currentUser && (
+                        <>
+                            <CustomNavLink to="/wardrobe" active={isActive('/wardrobe')}>
+                                Wardrobe
+                                {wardrobe && wardrobe.length > 0 && (
+                                    <span className="ml-2 bg-gradient-to-r from-primary to-secondary text-[#050510] text-[10px] font-bold px-1.5 py-0.5 rounded-full align-top">
+                                        {wardrobe.length}
+                                    </span>
+                                )}
+                            </CustomNavLink>
+                            <CustomNavLink to="/stylist" active={isActive('/stylist')}>AI Stylist</CustomNavLink>
+                        </>
+                    )}
+                </div>
+
+                <div className="flex items-center gap-4">
                     {currentUser ? (
                         <>
-                            <Link to="/profile" className="flex items-center gap-2 text-white bg-white/10 hover:bg-white/20 focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all duration-300">
-                                <User size={18} />
-                                <span className="hidden md:inline">Profile</span>
+                            <Link to="/profile">
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    className={`w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border transition-all ${isActive('/profile')
+                                        ? 'bg-gradient-to-r from-primary to-secondary border-transparent text-[#050510]'
+                                        : 'bg-white/5 border-white/10 text-white hover:border-primary/50'
+                                        }`}
+                                >
+                                    {userProfile?.avatar ? (
+                                        <img src={userProfile.avatar} alt="Profile" className="w-full h-full object-cover" />
+                                    ) : (
+                                        <User size={20} />
+                                    )}
+                                </motion.div>
                             </Link>
-                            <button onClick={handleLogout} className="text-gray-300 hover:text-white transition-colors" title="Logout">
-                                <LogOut size={20} />
+                            <button
+                                onClick={handleLogout}
+                                className="hidden md:flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                            >
+                                <LogOut size={18} />
                             </button>
                         </>
                     ) : (
-                        <Link to="/login" className="flex items-center gap-2 text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:ring-4 focus:outline-none focus:ring-purple-200 font-medium rounded-lg text-sm px-4 py-2 text-center transition-all duration-300 shadow-lg">
-                            <LogIn size={18} />
-                            <span>Login</span>
-                        </Link>
+                        <div className="flex items-center gap-4">
+                            <Link to="/login" className="text-white/80 hover:text-white font-medium transition-colors text-sm">
+                                Log In
+                            </Link>
+                            <Link
+                                to="/signup"
+                                className="bg-white text-[#050510] px-5 py-2 rounded-full font-medium text-sm hover:bg-gray-100 transition-colors shadow-lg shadow-white/10"
+                            >
+                                Sign Up
+                            </Link>
+                        </div>
                     )}
 
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-300 rounded-lg md:hidden hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-gray-200 ml-2"
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    {/* Mobile Menu Button - Simplified */}
+                    <button className="md:hidden text-white/80 hover:text-white">
+                        <Menu size={24} />
                     </button>
                 </div>
-                <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${isOpen ? 'block' : 'hidden'}`} id="navbar-sticky">
-                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-900/50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                        <li>
-                            <Link to="/" className={`block py-2 px-3 rounded md:p-0 transition-colors ${isActive('/') ? 'text-purple-400' : 'text-gray-300 hover:text-white'}`}>Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/wardrobe" className={`block py-2 px-3 rounded md:p-0 transition-colors flex items-center gap-1 ${isActive('/wardrobe') ? 'text-purple-400' : 'text-gray-300 hover:text-white'}`}>
-                                <Shirt size={16} /> Wardrobe
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/stylist" className={`block py-2 px-3 rounded md:p-0 transition-colors flex items-center gap-1 ${isActive('/stylist') ? 'text-purple-400' : 'text-gray-300 hover:text-white'}`}>
-                                <Sparkles size={16} /> Stylist
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 };
 

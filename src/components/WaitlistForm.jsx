@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Send, Loader2 } from 'lucide-react';
+import Section3D from './Section3D';
+import { useUser } from '../context/UserContext';
 
 const WaitlistForm = () => {
+    const { currentUser } = useUser();
+    // ... (state logic remains the same)
     const [email, setEmail] = useState('');
     const [suggestion, setSuggestion] = useState('');
     const [status, setStatus] = useState('idle'); // idle, loading, success, error
@@ -10,6 +14,7 @@ const WaitlistForm = () => {
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpr2vwRcTtl9KobodpK2lqnshgu_ImtSupMtSDxy5YdvuYyYedb2UElL2KrzBePO_u/exec";
 
     const handleSubmit = async (e) => {
+        // ... (handleSubmit logic remains the same)
         e.preventDefault();
         setStatus('loading');
 
@@ -37,11 +42,13 @@ const WaitlistForm = () => {
         }
     };
 
+    if (currentUser) {
+        return null;
+    }
+
     return (
         <section id="waitlist" className="py-24 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1a1638] to-[#0f0c29] z-0" />
-
-            <div className="container mx-auto px-4 relative z-10">
+            <Section3D className="container mx-auto px-4 relative z-10">
                 <div className="max-w-xl mx-auto bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl">
                     <div className="text-center mb-8">
                         <h3 className="text-3xl font-bold text-white mb-2">Join the Waitlist</h3>
@@ -91,7 +98,7 @@ const WaitlistForm = () => {
                         </div>
                     )}
                 </div>
-            </div>
+            </Section3D>
         </section>
     );
 };

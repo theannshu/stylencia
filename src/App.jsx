@@ -13,8 +13,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import BackgroundLayout from './components/BackgroundLayout';
 import SmoothScroll from './components/SmoothScroll';
-import Divyanka18 from './components/Divyanka18';
-
+import ForgotPassword from './pages/ForgotPassword';
 const Home = () => (
   <>
     <Hero />
@@ -25,20 +24,6 @@ const Home = () => (
 );
 
 function App() {
-  // Birthday Hijack Logic
-  const today = new Date();
-  const isBirthday = (today.getDate() === 9 || today.getDate() === 10) &&
-    today.getMonth() === 0 &&
-    today.getFullYear() === 2026;
-
-  if (isBirthday) {
-    // Optional: Update URL to reflect the special page
-    if (window.location.hash !== '#/for-divyanka') {
-      window.history.replaceState(null, '', '#/for-divyanka');
-    }
-    return <Divyanka18 />;
-  }
-
   return (
     <Router>
       <SmoothScroll>
@@ -48,10 +33,12 @@ function App() {
             <main>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/features" element={<Features />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/wardrobe" element={<Wardrobe />} />
                 <Route path="/stylist" element={<Stylist />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/signup" element={<SignUp />} />
               </Routes>
             </main>

@@ -14,9 +14,9 @@ const BackgroundLayout = ({ children }) => {
     }));
 
     return (
-        <div className="relative min-h-screen bg-[#0f0c29] overflow-hidden text-white">
+        <div className="relative min-h-screen bg-[#050510] overflow-hidden text-white">
             {/* Base Gradient Background */}
-            <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] will-change-transform" />
+            <div className="fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2d033b] via-[#050510] to-[#000000] will-change-transform" />
 
             {/* Noise Texture Overlay for Luxury Feel */}
             <div className="fixed inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"

@@ -1,35 +1,72 @@
 @import "tailwindcss";
 
+@theme {
+  --font-logo: "Space Mono", monospace;
+  --font-sans: "Lora", serif;
+  --font-display: "Playfair Display", serif;
+
+  --color-primary: #d8b4fe;
+  --color-secondary: #f472b6;
+  --color-dark: #050510;
+  --color-glass: rgba(255, 255, 255, 0.05);
+
+  --animate-gradient: gradient 8s ease infinite;
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+
 body {
   @apply bg-slate-50 text-slate-900;
 }
 
-/* Luxury Scrollbar */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+/* Luxury Scrollbar - Hidden for App-like feel */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #0f0c29; 
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #4c1d95, #db2777); 
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #5b21b6, #be185d); 
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Luxury Selection */
 ::selection {
-  background: rgba(219, 39, 119, 0.3); /* Pink-600 with opacity */
+  background: rgba(216, 180, 254, 0.3);
+  /* Soft Lilac with opacity */
+  color: white;
+}
+
+/* Luxury Selection */
+::selection {
+  background: rgba(219, 39, 119, 0.3);
+  /* Pink-600 with opacity */
   color: white;
 }
 
 /* Lenis Recommended Styles */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 

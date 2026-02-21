@@ -42,8 +42,12 @@ const Profile = () => {
                         <Sparkles size={100} />
                     </div>
                     <div className="flex items-center gap-6 relative z-10">
-                        <div className="bg-white/20 p-4 rounded-full backdrop-blur-sm border border-white/30">
-                            <User size={40} />
+                        <div className="bg-white/20 rounded-full backdrop-blur-sm border border-white/30 flex items-center justify-center overflow-hidden w-20 h-20">
+                            {formData.avatar ? (
+                                <img src={formData.avatar} alt="Profile" className="w-full h-full object-cover" />
+                            ) : (
+                                <User size={40} />
+                            )}
                         </div>
                         <div>
                             <h1 className="text-3xl font-bold">Your Style Profile</h1>
@@ -53,16 +57,7 @@ const Profile = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-8 space-y-8">
-                    {message && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="bg-green-500/20 border border-green-500/50 text-green-200 px-6 py-4 rounded-xl flex items-center gap-2"
-                        >
-                            <Sparkles size={20} />
-                            {message}
-                        </motion.div>
-                    )}
+
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Basic Info */}
@@ -184,21 +179,29 @@ const Profile = () => {
                     <div className="space-y-4 pt-4 border-t border-white/10">
                         <label className="block text-lg font-medium text-purple-200">Face Shape</label>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            {['oval', 'round', 'square', 'diamond', 'heart', 'oblong'].map((shape) => (
+                            {[
+                                { id: 'oval', label: 'Oval', desc: 'Length > width, soft jaw' },
+                                { id: 'round', label: 'Round', desc: 'Width ≈ length, circular' },
+                                { id: 'square', label: 'Square', desc: 'Broad forehead, sharp jaw' },
+                                { id: 'diamond', label: 'Diamond', desc: 'Wide cheekbones, narrow chin' },
+                                { id: 'heart', label: 'Heart', desc: 'Broad forehead, pointed chin' },
+                                { id: 'oblong', label: 'Oblong', desc: 'Noticeably longer than wide' }
+                            ].map(({ id, label, desc }) => (
                                 <button
-                                    key={shape}
+                                    key={id}
                                     type="button"
-                                    onClick={() => setFormData(prev => ({ ...prev, faceStructure: shape }))}
-                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group flex flex-col items-center gap-3 ${formData.faceStructure === shape
+                                    onClick={() => setFormData(prev => ({ ...prev, faceStructure: id }))}
+                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group flex flex-col items-center gap-2 ${formData.faceStructure === id
                                         ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)]'
                                         : 'border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 hover:border-purple-400/50'
                                         }`}
                                 >
                                     <div className="relative z-10">
-                                        <FaceShapeIcons type={shape} className={`w-16 h-16 ${formData.faceStructure === shape ? 'text-white' : 'text-gray-400 group-hover:text-white transition-colors'}`} />
+                                        <FaceShapeIcons type={id} className={`w-14 h-14 md:w-16 md:h-16 ${formData.faceStructure === id ? 'text-white' : 'text-gray-400 group-hover:text-white transition-colors'}`} />
                                     </div>
-                                    <span className="relative z-10 capitalize">{shape}</span>
-                                    {formData.faceStructure === shape && (
+                                    <span className="relative z-10 font-bold capitalize mt-1">{label}</span>
+                                    <span className="relative z-10 text-xs text-gray-400 text-center font-normal px-2 leading-tight">{desc}</span>
+                                    {formData.faceStructure === id && (
                                         <motion.div
                                             layoutId="activeFaceShape"
                                             className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"
@@ -210,24 +213,32 @@ const Profile = () => {
                     </div>
 
                     {/* Body Type Section */}
-                    <div className="space-y-4 pt-4 border-t border-white/10">
+                    <div className="space-y-4 pt-4 border-t border-white/10 relative z-0">
                         <label className="block text-lg font-medium text-purple-200">Body Type</label>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            {['Hourglass', 'Pear', 'Apple', 'Rectangle', 'Inverted Triangle', 'Athletic'].map((type) => (
+                            {[
+                                { id: 'Hourglass', label: 'Hourglass', desc: 'Balanced bust & hips, defined waist' },
+                                { id: 'Pear', label: 'Pear', desc: 'Hips wider than shoulders' },
+                                { id: 'Apple', label: 'Apple', desc: 'Broader shoulders & bust, narrower hips' },
+                                { id: 'Rectangle', label: 'Rectangle', desc: 'Straight up & down, minimal waist definition' },
+                                { id: 'Inverted Triangle', label: 'Inverted Triangle', desc: 'Broad shoulders, narrow hips' },
+                                { id: 'Athletic', label: 'Athletic', desc: 'Muscular, well-proportioned structure' }
+                            ].map(({ id, label, desc }) => (
                                 <button
-                                    key={type}
+                                    key={id}
                                     type="button"
-                                    onClick={() => setFormData(prev => ({ ...prev, bodyType: type }))}
-                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group flex flex-col items-center gap-3 ${formData.bodyType === type
+                                    onClick={() => setFormData(prev => ({ ...prev, bodyType: id }))}
+                                    className={`p-4 rounded-xl border transition-all text-sm font-medium relative overflow-hidden group flex flex-col items-center gap-2 ${formData.bodyType === id
                                         ? 'border-purple-500 bg-purple-500/20 text-white shadow-[0_0_15px_rgba(168,85,247,0.3)]'
                                         : 'border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 hover:border-purple-400/50'
                                         }`}
                                 >
                                     <div className="relative z-10">
-                                        <BodyTypeIcons type={type} className={`w-16 h-16 ${formData.bodyType === type ? 'text-white' : 'text-gray-400 group-hover:text-white transition-colors'}`} />
+                                        <BodyTypeIcons type={id} className={`w-14 h-14 md:w-16 md:h-16 ${formData.bodyType === id ? 'text-white' : 'text-gray-400 group-hover:text-white transition-colors'}`} />
                                     </div>
-                                    <span className="relative z-10">{type}</span>
-                                    {formData.bodyType === type && (
+                                    <span className="relative z-10 font-bold mt-1 text-center">{label}</span>
+                                    <span className="relative z-10 text-xs text-gray-400 text-center font-normal px-1 leading-tight">{desc}</span>
+                                    {formData.bodyType === id && (
                                         <motion.div
                                             layoutId="activeBodyType"
                                             className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"
@@ -238,7 +249,7 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="pt-6">
+                    <div className="pt-6 space-y-4">
                         <button
                             type="submit"
                             className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-purple-500/30 transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2 relative overflow-hidden group"
@@ -249,6 +260,17 @@ const Profile = () => {
                             </span>
                             <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </button>
+
+                        {message && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="bg-green-500/20 border border-green-500/50 text-green-200 px-6 py-4 rounded-xl flex items-center justify-center gap-2"
+                            >
+                                <Sparkles size={20} />
+                                {message}
+                            </motion.div>
+                        )}
                     </div>
                 </form>
             </motion.div>

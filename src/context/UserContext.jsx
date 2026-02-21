@@ -18,59 +18,120 @@ export const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // Initial State
-    const [userProfile, setUserProfile] = useState(() => {
-        const saved = localStorage.getItem('stylencia_user_profile');
-        return saved ? JSON.parse(saved) : {
-            name: '',
-            gender: 'women', // Default
-            age: '',
-            height: '',
-            bodyType: '', // e.g., Hourglass, Pear, Rectangle
-            skinTone: '', // e.g., Fair, Medium, Dark
-            hairColor: '',
-            eyeColor: '',
-            faceStructure: '', // e.g., Oval, Round, Square
-        };
+    const [userProfile, setUserProfile] = useState({
+        name: '',
+        gender: 'women',
+        age: '',
+        height: '',
+        bodyType: '',
+        skinTone: '',
+        hairColor: '',
+        eyeColor: '',
+        faceStructure: '',
     });
+    const [wardrobe, setWardrobe] = useState([]);
 
-    const [wardrobe, setWardrobe] = useState(() => {
-        const saved = localStorage.getItem('stylencia_wardrobe');
-        return saved ? JSON.parse(saved) : [];
-    });
-
-    // Auth Listener
+    // Auth & Data Listener
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setCurrentUser(user);
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                if (!user.emailVerified) {
+                    await signOut(auth);
+                    setCurrentUser(null);
+                    setLoading(false);
+                    return;
+                }
+
+                setCurrentUser(user);
+
+                // Real-time Firestore Listener
+                import('firebase/firestore').then(({ doc, onSnapshot }) => {
+                    import('../firebase').then(({ db }) => {
+                        const unsubData = onSnapshot(doc(db, "users", user.uid), (doc) => {
+                            if (doc.exists()) {
+                                const data = doc.data();
+                                setUserProfile(data.profile || {});
+                                setWardrobe(data.wardrobe || []);
+                            }
+                        });
+                        // Cleanup data listener on unmount or user change (not strictly handled here for simplicity, but good practice)
+                    });
+                });
+            } else {
+                setCurrentUser(null);
+                setUserProfile({ name: '', gender: 'women' }); // Reset defaults
+                setWardrobe([]);
+            }
             setLoading(false);
         });
         return unsubscribe;
     }, []);
 
-    // Persistence Effects
-    useEffect(() => {
-        localStorage.setItem('stylencia_user_profile', JSON.stringify(userProfile));
-    }, [userProfile]);
+    // Actions (Write to Firestore)
+    const updateProfile = async (updates) => {
+        if (!currentUser) return;
+        const newProfile = { ...userProfile, ...updates };
+        // Optimistic update
+        setUserProfile(newProfile);
 
-    useEffect(() => {
-        localStorage.setItem('stylencia_wardrobe', JSON.stringify(wardrobe));
-    }, [wardrobe]);
-
-    // Actions
-    const updateProfile = (updates) => {
-        setUserProfile(prev => ({ ...prev, ...updates }));
+        try {
+            const { doc, setDoc } = await import('firebase/firestore');
+            const { db } = await import('../firebase');
+            await setDoc(doc(db, "users", currentUser.uid), {
+                profile: newProfile
+            }, { merge: true });
+        } catch (e) {
+            console.error("Error updating profile:", e);
+        }
     };
 
-    const addToWardrobe = (item) => {
-        setWardrobe(prev => [...prev, { ...item, id: Date.now().toString() }]);
+    const addToWardrobe = async (item) => {
+        if (!currentUser) return;
+        const newItem = { ...item, id: Date.now().toString() };
+        const newWardrobe = [...wardrobe, newItem];
+
+        setWardrobe(newWardrobe); // Optimistic
+
+        try {
+            const { doc, updateDoc } = await import('firebase/firestore');
+            const { db } = await import('../firebase');
+            await updateDoc(doc(db, "users", currentUser.uid), {
+                wardrobe: newWardrobe
+            });
+        } catch (e) {
+            console.error("Error adding item:", e);
+        }
     };
 
-    const removeFromWardrobe = (itemId) => {
-        setWardrobe(prev => prev.filter(item => item.id !== itemId));
+    const removeFromWardrobe = async (itemId) => {
+        if (!currentUser) return;
+        const newWardrobe = wardrobe.filter(item => item.id !== itemId);
+
+        setWardrobe(newWardrobe); // Optimistic
+
+        try {
+            const { doc, updateDoc } = await import('firebase/firestore');
+            const { db } = await import('../firebase');
+            await updateDoc(doc(db, "users", currentUser.uid), {
+                wardrobe: newWardrobe
+            });
+        } catch (e) {
+            console.error("Error removing item:", e);
+        }
     };
 
-    const clearWardrobe = () => {
+    const clearWardrobe = async () => {
+        if (!currentUser) return;
         setWardrobe([]);
+        try {
+            const { doc, updateDoc } = await import('firebase/firestore');
+            const { db } = await import('../firebase');
+            await updateDoc(doc(db, "users", currentUser.uid), {
+                wardrobe: []
+            });
+        } catch (e) {
+            console.error("Error clearing wardrobe:", e);
+        }
     };
 
     const logout = () => {

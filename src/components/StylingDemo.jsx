@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, RefreshCw, User, Info } from 'lucide-react';
 import { generateOutfit } from '../utils/fashionLogic';
 import ProductCard from './ProductCard';
+import Section3D from './Section3D';
+import { useUser } from '../context/UserContext';
 
 const occasions = [
     { id: 'wedding', label: 'Wedding Guest', emoji: '💍' },
@@ -12,34 +14,53 @@ const occasions = [
 ];
 
 const StylingDemo = () => {
+    const { userProfile } = useUser();
     const [selectedOccasion, setSelectedOccasion] = useState(null);
     const [gender, setGender] = useState('women'); // 'women' or 'men'
     const [isGenerating, setIsGenerating] = useState(false);
     const [result, setResult] = useState(null); // { description: string, items: [] }
 
-    const handleGenerate = () => {
+    const handleGenerate = async () => {
         if (!selectedOccasion) return;
         setIsGenerating(true);
         setResult(null);
 
-        // Simulate Expert Engine processing
-        setTimeout(() => {
-            const outfit = generateOutfit(gender, selectedOccasion);
-            setResult(outfit);
+        try {
+            const response = await fetch('http://localhost:5000/api/generate-outfit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    gender: userProfile?.gender || gender,
+                    occasion: selectedOccasion,
+                    profile: userProfile
+                })
+            });
+
+            if (response.ok) {
+                const outfit = await response.json();
+                setResult(outfit);
+            } else {
+                console.error("Backend error, falling back to static database");
+                setResult(generateOutfit(gender, selectedOccasion));
+            }
+        } catch (error) {
+            console.error("Failed to reach backend, falling back to static database:", error);
+            setResult(generateOutfit(gender, selectedOccasion));
+        } finally {
             setIsGenerating(false);
-        }, 1500);
+        }
     };
 
     return (
-        <section id="demo" className="py-20 bg-[#0f0c29] text-white">
-            <div className="container mx-auto px-4 text-center">
+        <section id="demo" className="py-20 text-white">
+            <Section3D className="container mx-auto px-4 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Ask Stylencia</h2>
                 <p className="text-gray-400 mb-8">Select your preferences to get a curated look designed by fashion experts.</p>
 
                 <div className="max-w-6xl mx-auto bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-2xl">
 
                     {/* Gender Filter */}
-                    <div className="flex justify-center mb-8">
+                    <div className="flex justify-center mb-4">
                         <div className="bg-black/40 p-1 rounded-full flex items-center border border-white/10">
                             <button
                                 onClick={() => { setGender('women'); setResult(null); }}
@@ -55,6 +76,19 @@ const StylingDemo = () => {
                             </button>
                         </div>
                     </div>
+
+                    {/* Active Profile Traits */}
+                    {userProfile && Object.values(userProfile).filter(Boolean).length > 2 && (
+                        <div className="flex justify-center mb-8">
+                            <div className="flex items-center gap-2 text-xs text-purple-300 bg-purple-900/30 px-4 py-2 rounded-full border border-purple-500/20">
+                                <Sparkles size={14} className="text-purple-400" />
+                                Using your saved profile: {
+                                    [userProfile.bodyType, userProfile.skinTone, userProfile.height ? userProfile.height + 'cm' : '']
+                                        .filter(Boolean).join(" • ")
+                                }
+                            </div>
+                        </div>
+                    )}
 
                     {/* Occasion Selection */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -149,7 +183,7 @@ const StylingDemo = () => {
                         </AnimatePresence>
                     </div>
                 </div>
-            </div>
+            </Section3D>
         </section>
     );
 };
